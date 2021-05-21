@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+<style>
+img {
+    vertical-align: middle;
+    border-style: none;
+    max-width: 100px;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 20px;
+  }
+</style>
+{% endblock stylesheet %}
+
+{% block content %}
+  <div class="container"> <br>
+    <h2>{{title}}</h2> <br>
+    <h3>Here is My Musician List : </h3>
+    <ul>
+      {% if musician_list %}
+        {% for x in musician_list %}
+          <li><a href="{% url 'First_App:album_list' artist_id=x.id username=x.first_name %}">{{x.first_name}} {{x.last_name}}</a></li>
+        {% endfor %}
+      {% else %}
+      <h4>No Musician in The List</h4>
+      {% endif %}
+    </ul> <br>
+    <a href="" class='btn btn-info'>Source Code</a>
+  </div>
+{% endblock content %}

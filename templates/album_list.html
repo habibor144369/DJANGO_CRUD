@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+<style>
+img {
+    vertical-align: middle;
+    border-style: none;
+    max-width: 100px;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 20px;
+  }
+</style>
+{% endblock stylesheet %}
+
+{% block content %}
+  <div class="container"> <br>
+  <h4>Artist Name : {{artist_info.first_name}} {{artist_info.last_name}}</h4>
+  <h4>Artist Rating : {{artist_reting.num_stars__avg}}</h4>
+  <h4>Instrument : {{artist_info.instrument}}</h4>
+  <a href="{% url 'First_App:Edit_Artist' artist_id=artist_info.id username=artist_info.first_name %}" class="btn btn-info">Edit Here</a>  <br> <br>
+
+  <h3>{{title}} : </h3> <br>
+  <table class="table table-bordered">
+    <tr>
+        <th>Album Name : </th>
+        <th>Relese Date : </th>
+        <th>Rating : </th>
+    </tr>
+    {% for x in album_list %}
+    <tr>
+      <td><a href="{% url 'First_App:Edit_Album' album_id=x.id username=x.name %}">{{x.name}}</a></td>
+      <td>{{x.release_date}}</td>
+      <td>{{x.num_stars}}</td>
+    </tr>
+    {% endfor %}
+  </table> <br>
+    <a href="{% url 'First_App:Delete_Musician' artist_id=artist_info.id %}" class="btn btn-danger" onclick="return confirm('Are You Sure, You Can Delete This Album!')">Delete Musician</a>
+  </div>
+{% endblock content %}

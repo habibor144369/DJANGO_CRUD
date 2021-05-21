@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Album Form</title>
+{% endblock title %}
+
+{% block stylesheet %}
+<style>
+img {
+    vertical-align: middle;
+    border-style: none;
+    max-width: 100px;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 20px;
+  }
+</style>
+{% endblock stylesheet %}
+
+{% block content %}
+  <div class="container"> <br>
+    <h2>{{title}}</h2><br>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+      <input class="btn btn-success" type="submit" name="submit" value="Add Album">
+    </form>
+  </div>
+{% endblock content %}

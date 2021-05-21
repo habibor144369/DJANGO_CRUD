@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Edit Album</title>
+{% endblock title %}
+
+{% load static %}
+
+{% block stylesheet %}
+<style>
+img {
+    vertical-align: middle;
+    border-style: none;
+    max-width: 100px;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 20px;
+  }
+</style>
+{% endblock stylesheet %}
+
+{% block content %}
+<div class="container"> <br>
+<h4>You Can Edit To Album : </h4> <br>
+<form method="post">
+{% csrf_token %}
+{{form.as_p}}
+<input class="btn btn-success" type="submit" name="submit" value="Update Here">
+</form> <br> 
+<h4>You Can Delete To Album : </h4> <br>
+<a href="{% url 'First_App:Delete_Album' album_id=album_id %}" class="btn btn-danger" onclick="return confirm('Are You Sure, You Can Delete This Album!')">Delete Album</a>
+</div>
+{% endblock content %}
